@@ -13,9 +13,8 @@ def check_data(number):
     if number.isdigit() and 0 < int(number) <= len(categories):
         return int(number) - 1
 
-def choose_category(categories):
-    numeration(categories)
-    number = input("Оберіть номер категорії:")
+def choose_element(element, number):
+    numeration(element)
     return check_data(number)
 
 items = []   
@@ -38,7 +37,8 @@ def admin_menu():
             numeration(categories)
                 
         if choice == "3":
-            category_number = choose_category(categories)
+            category_number = choose_element(categories,
+                                             number = input("Оберіть номер категорії:"))
             if category_number is None:
                 category_number = 0
             item = Item(name=input("Назва товару:"),
@@ -52,7 +52,8 @@ def admin_menu():
                 print(number,item)
                 
         if choice == "5":
-            category_number = choose_category(categories)
+            category_number = choose_element(categories,
+                                             number = input("Оберіть номер категорії:"))
             if category_number is not None:
                 category = categories[category_number]
                 print("Товари категорії")
@@ -63,9 +64,7 @@ def admin_menu():
             break
 
 def get_item_number(items):
-    numeration(items)
-    number = input("Введіть номер товару:")
-    return check_data(number)
+    choose_element(items, number = input("Введіть номер товару:"))
 
 def client_menu(client):
     global items,categories
